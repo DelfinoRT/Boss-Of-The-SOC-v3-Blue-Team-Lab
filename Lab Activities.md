@@ -182,3 +182,57 @@ I found the sourcetype: "hardware" and its results all bring the same processor 
 index=botsv3 sourcetype=hardware
 ```
 **Answer**: E5-2676
+
+🟢TASK🟢 **Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.**  
+
+Did a quick search trying to find the account belonging to our guy "Bud", most probably "bstoll" or "btun"
+```
+index=botsv3 "bud"
+```
+Amongst the logs I found this:
+```
+ { [-]
+   active: true
+   alertCounts: { [+]
+   }
+   authType: LOCAL
+   backupDeviceCount: 1
+   backupUsage: [ [+]
+   ]
+   blocked: false
+   computerCount: 1
+   creationDate: 2018-08-19T13:39:48.231Z
+   email: bstoll@froth.ly
+   emailPromo: true
+   firstName: Bud
+   invited: false
+   lastLoginDate: 2018-08-19T13:46:20.276Z
+   lastName: Stoll
+   licenses: [ [+]
+   ]
+   localAuthenticationOnly: false
+   modificationDate: 2018-08-19T13:45:43.916Z
+   modular_input_consumption_time: Mon, 20 Aug 2018 15:22:39 +0000
+   notes: null
+   orgId: 1852
+   orgName: Frothly
+   orgType: ENTERPRISE
+   orgUid: 858489735492421636
+   passwordReset: false
+   quotaInBytes: -1
+   roles: [ [+]
+   ]
+   securityKeyType: AccountPassword
+   shareDeviceCount: 0
+   status: Active
+   timestamp: Mon, 20 Aug 2018 15:22:39 +0000
+   userExtRef: null
+   userId: 7211
+   userUid: 858527737266971219
+   username: bstoll@froth.ly
+   usernameIsAnEmail: true
+} 
+```
+So our guy was "bstoll"
+
+**Answer**: 
