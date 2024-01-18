@@ -14,6 +14,22 @@ The next step for me was to find out what exact data is stored in CludTrial:
 ```
 index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 ```
+<details>
+  <summary>Click me</summary>
+  
+  ### Heading
+  1. Foo
+  2. Bar
+     * Baz
+     * Qux
+
+  ### Some Javascript
+  ```js
+  function logSomething(something) {
+    console.log('Something', something);
+  }
+  ```
+</details>
 Found "userIdentity.userName" which is the most aligned to what I was looking for to answer the question.
 Finally enumerated the available user names:
 ```
