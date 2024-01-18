@@ -2,7 +2,7 @@
 
 Firs I did a quick search and found out that the only index available was "botsv3"
 ```
-index=* | stats count by index | fields index
+index=* | stats count by index
 ```
 Then I went to investigate where AWS stores logs for user access and got to: https://docs.aws.amazon.com/IAM/latest/UserGuide/security-logging-and-monitoring.html, AWS CloudTrail made the most sense.
 ```
