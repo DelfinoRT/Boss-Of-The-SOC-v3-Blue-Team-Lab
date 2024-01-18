@@ -54,4 +54,5 @@ index=botsv3 sourcetype=aws:cloudtrail
 | search userIdentity.sessionContext.mfaAuthenticated=false
 ```
 I found the field I was looking for!
+
 **Answer**: userIdentity.sessionContext.mfaAuthenticated
