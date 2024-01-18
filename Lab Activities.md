@@ -53,6 +53,16 @@ The following search then brings four events
 index=botsv3 sourcetype=aws:cloudtrail 
 | search userIdentity.sessionContext.mfaAuthenticated=false
 ```
-I found the field I was looking for!
-
 **Answer**: userIdentity.sessionContext.mfaAuthenticated
+
+🟢TASK🟢 **What is the processor number used on the web servers? Answer guidance: Include any special characters/punctuation. (Example: The processor number for Intel Core i7-8650U is i7-8650U.)**  
+
+Again had to check if there's any sourcetype that points to hardware-related logs
+```
+index=botsv3 | stats count by sourcetype
+```
+I found the sourcetype: "hardware" and its results all bring the same processor info
+```
+index=botsv3 sourcetype=hardware
+```
+**Answer**: E5-2676
