@@ -19,7 +19,7 @@ Finally enumerated the available user names:
 ```
 index=botsv3 sourcetype=aws:cloudtrail | stats count by userIdentity.userName
 ```
-Answer: bstoll,btun,splunk_access,web_admin
+**Answer**: bstoll,btun,splunk_access,web_admin
 
 🟢 **What field would you use to alert that AWS API activity have occurred without MFA (multi-factor authentication)? Answer guidance: Provide the full JSON path. (Example: iceCream.flavors.traditional)**  
 
@@ -53,4 +53,5 @@ The following search then brings four events
 index=botsv3 sourcetype=aws:cloudtrail 
 | search userIdentity.sessionContext.mfaAuthenticated=false
 ```
-d
+I found the field I was looking for!
+**Answer**: userIdentity.sessionContext.mfaAuthenticated
