@@ -168,7 +168,7 @@ Then I found https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.ht
 ```
 index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
 ```
-One of these events is granting WRITE and READ permissions to "All users"
+One of these events is granting WRITE and READ permissions to "global/All users"
 ```
  Grantee: { [-]
                URI: http://acs.amazonaws.com/groups/global/AllUsers
@@ -189,6 +189,21 @@ One of these events is granting WRITE and READ permissions to "All users"
 That's the event we are looking for, we need its EventID
 **Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
-🟢TASK🟢 **Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.**  
+🟢TASK🟢 **What is the name of the S3 bucket that was made publicly accessible?**  
 
-Did a quick
+Using the last query
+```
+index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
+```
+We need to expand the 'requestParameters' object to see this:
+```
+ requestParameters: { [-]
+     AccessControlPolicy: { [+]
+     }
+     acl: [ [+]
+     ]
+     bucketName: frothlywebcode
+   }
+```
+There we can identify the bucket name.
+**Answer**: frothlywebcode
