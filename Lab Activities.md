@@ -342,3 +342,35 @@ So if the potential object size in bytes could be: 3076532 then:
 3002.77 kilobytes / 1024 = 2.93 megabytes
 ```
 🟢 **Answer**: 2.93
+
+## ❓TASK❓ A Frothly endpoint exhibits signs of coin mining activity. What is the name of the first process to reach 100 percent CPU processor utilization time from this activity on this endpoint? Answer guidance: Include any special characters/punctuation.
+
+Seems that the "cpu" sourcetype could help here
+```
+index=botsv3 earliest=0 frothlywebcode sourceType=cpu
+```
+0 results xD
+
+According to https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/US_SingleMetricPerInstance.html, the "CloudWatch" sourcetype could help us, the info that we're looking for could be in the "CPUUtilization" field
+```
+index=botsv3 sourcetype=aws:cloudwatch CPUUtilization
+| table time, Maximum, metric_dimensions
+```
+I can't find any log with 100% CPU utilization, maybe I'm looking at the incorrect sourcetype?
+
+Trying now with "ps"
+```
+index=botsv3 sourcetype=ps 
+| table time, host, pctCPU, pctMEM, pid, process_name
+```
+This looks more promising but I still can't find a process with 100% CPU utilization the maximum is splunkd with 61%
+
+This page https://docs.splunk.com/Documentation/WindowsAddOn/8.1.2/User/SourcetypesandCIMdatamodelinfo references to "perfmon" and "perfmonmk", we have "PerfmonMk:Process" to use in this splunk index.
+```
+index=botsv3 sourcetype=PerfmonMk:Process
+| table host, instance, process_cpu_used_percent, process_id, process_name, source
+```
+I found the process!
+| host | instance | process_cpu_used_percent | process_id | process_name | source |
+| --- | --- | --- | --- | --- | --- |
+| BSTOLL-L | chrome#5 | 100 | 8000| chrome#5 | PerfmonMk:Process|
