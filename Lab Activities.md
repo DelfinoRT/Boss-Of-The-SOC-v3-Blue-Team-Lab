@@ -212,8 +212,13 @@ There we can identify the bucket name.
 
 ## ❓TASK❓ What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
 
-Using the last query
+I can't see an event in CloudTrial that could be related to file uploads and listing by the events in the frothlywebcode bucket also does not gives any clues
+```
+index=botsv3 sourcetype=aws:cloudtrail  requestParameters.bucketName=frothlywebcode 
+| stats count by eventName
+```
+I found (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events) that potentially data uploads to the bucket could be logged by 'AWS::S3' as per the service description:
+> Amazon S3 object-level API activity (for example, GetObject, DeleteObject, and PutObject API operations) on buckets and objects in buckets.
 ```
 index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
 ```
-We need to expand the 'requestParameters' object to see this:
