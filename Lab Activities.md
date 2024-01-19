@@ -233,7 +233,7 @@ Amongst the logs I found this:
    usernameIsAnEmail: true
 } 
 ```
-So our guy was "bstoll" with userUid: 858527737266971219
+So our guy was "bstoll" with accountId=622676721278 
 
 The answer requires to identify a change made via API so the call should be "PUT".
 After doing some googline I came across this: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html that points to
@@ -242,10 +242,34 @@ PutBucketPolicy
 ```
 I did not get any results using "PutBucketPolicy"
 ```
-index=botsv3 sourcetype=aws:cloudtrail” eventName=”PutBucketPolicy”
-index=botsv3 sourcetype=aws:cloudtrail” (username="bstoll@froth.ly" AND eventName=”PutBucketPolicy”)
-index=botsv3 sourcetype=aws:cloudtrail” (userUid=858527737266971219 AND eventName=”PutBucketPolicy”)
+index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketPolicy
 ```
-s
+Then I found https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html 
+ 2 events found querying:
+```
+index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
+```
+One of these events is granting WRITE and READ permissions to "All users"
+```
+ Grantee: { [-]
+               URI: http://acs.amazonaws.com/groups/global/AllUsers
+               xmlns:xsi: http://www.w3.org/2001/XMLSchema-instance
+               xsi:type: Group
+             }
+             Permission: READ
+           }
+           { [-]
+             Grantee: { [-]
+               URI: http://acs.amazonaws.com/groups/global/AllUsers
+               xmlns:xsi: http://www.w3.org/2001/XMLSchema-instance
+               xsi:type: Group
+             }
+             Permission: WRITE
+           }
+```
+That's the event we are looking for, we need its EventID
+**Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
-**Answer**: 
+🟢TASK🟢 **Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.**  
+
+Did a quick
