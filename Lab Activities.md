@@ -497,3 +497,18 @@ index=botsv3 sourcetype=symantec:ep:security:file (signature_id=30356 OR signatu
 |  reverse
 ```
 `| reverse` - This is a command that changes the order of the events returned. By default, Splunk returns events in reverse chronological order (i.e., the most recent events first). The `reverse` command will flip this order, so the oldest events are shown first.
+🟢 **Answer**: 30358
+
+## ❓TASK #14❓ According to Symantec's website, what is the severity of this specific coin miner threat?
+
+Google search took me to https://community.broadcom.com/symantecenterprise/communities/community-home/digestviewer/viewthread?MessageKey=48098243-218e-4d27-ad10-ea917c859f70&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=digestviewer and there I found a reference to https://www.symantec.com/security_response/attacksignatures/detail.jsp?asid=30358 which is now redirecting to https://www.broadcom.com/support/security-center/attacksignatures/detail?asid=30358 and it shows that the severity is "Medium"
+🟢 **Answer**: Medium
+
+## ❓TASK #15❓ What is the short hostname of the only Frothly endpoint to show evidence of defeating the cryptocurrency threat? (Example: ahamilton instead of ahamilton.mycompany.com)
+
+Improved the query to show the hosts where the action was defined as blocked:
+```
+index=botsv3 sourcetype=symantec:ep:security:file signature_id=30358 action=blocked
+```
+All of the resulting events show the same host name "BTUN-L"
+🟢 **Answer**: BTUN-L
