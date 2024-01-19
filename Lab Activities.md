@@ -233,6 +233,18 @@ Amongst the logs I found this:
    usernameIsAnEmail: true
 } 
 ```
-So our guy was "bstoll"
+So our guy was "bstoll" with userUid: 858527737266971219
+
+The answer requires to identify a change made via API so the call should be "PUT".
+After doing some googline I came across this: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html that points to
+```
+PutBucketPolicy
+```
+I did not get any results using "PutBucketPolicy"
+index=botsv3 sourcetype=aws:cloudtrail” eventName=”PutBucketPolicy”
+index=botsv3 sourcetype=aws:cloudtrail” (username="bstoll@froth.ly" AND eventName=”PutBucketPolicy”)
+index=botsv3 sourcetype=aws:cloudtrail” (userUid=858527737266971219 AND eventName=”PutBucketPolicy”)
+```
+s
 
 **Answer**: 
