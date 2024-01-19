@@ -241,6 +241,7 @@ After doing some googline I came across this: https://docs.aws.amazon.com/Amazon
 PutBucketPolicy
 ```
 I did not get any results using "PutBucketPolicy"
+```
 index=botsv3 sourcetype=aws:cloudtrail” eventName=”PutBucketPolicy”
 index=botsv3 sourcetype=aws:cloudtrail” (username="bstoll@froth.ly" AND eventName=”PutBucketPolicy”)
 index=botsv3 sourcetype=aws:cloudtrail” (userUid=858527737266971219 AND eventName=”PutBucketPolicy”)
