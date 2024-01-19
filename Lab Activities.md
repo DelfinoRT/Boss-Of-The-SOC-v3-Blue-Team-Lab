@@ -9,12 +9,7 @@ Then I went to investigate where AWS stores logs for user access and got to: htt
 index=botsv3 | stats count by sourcetype
 ```
 Sourcetype "aws:cloudtrail" identified
-
-The next step for me was to find out what exact data is stored in CludTrial:
-```
-index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
-```
-
+All CloudTrial events:
 | 1  | 2 | 3 | 4  |
 | --- | --- | --- | --- |
 | AssumeRole | AuthorizeSecurityGroupIngress | CreateAccessKey | ConsoleLogin |
@@ -47,6 +42,11 @@ index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 | PutMetricAlarm  | PutScalingPolicy  | RegisterTargets  | RevokeSecurityGroupIngress  |
 | RunInstances  | StartAssessmentRun  | TerminateInstances  | UpdateAccessKey  |
 | UpdateSecurityGroupRuleDescriptionsIngress  | -  | -  | -  |
+
+The next step for me was to find out what exact data is stored in CludTrial:
+```
+index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
+```
 
 Found "userIdentity.userName" which is the most aligned to what I was looking for to answer the question.
 Finally enumerated the available user names:
