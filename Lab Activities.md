@@ -1,4 +1,4 @@
-## ❓TASK❓ List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller) 
+## ❓TASK #2❓ List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller) 
 
 First I did a quick search and found out that the only index available was "botsv3"
 ```
@@ -87,7 +87,7 @@ index=botsv3 sourcetype=aws:cloudtrail | stats count by userIdentity.userName
 ```
 🟢 **Answer**: bstoll,btun,splunk_access,web_admin
 
-## ❓TASK❓ What field would you use to alert that AWS API activity have occurred without MFA (multi-factor authentication)? Answer guidance: Provide the full JSON path. (Example: iceCream.flavors.traditional)  
+## ❓TASK #3❓ What field would you use to alert that AWS API activity have occurred without MFA (multi-factor authentication)? Answer guidance: Provide the full JSON path. (Example: iceCream.flavors.traditional)  
 
 Online search took me to https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html where I found:
 ```
@@ -121,7 +121,7 @@ index=botsv3 sourcetype=aws:cloudtrail
 ```
 🟢 **Answer**: userIdentity.sessionContext.mfaAuthenticated
 
-## ❓TASK❓ What is the processor number used on the web servers? Answer guidance: Include any special characters/punctuation. (Example: The processor number for Intel Core i7-8650U is i7-8650U.)
+## ❓TASK #4❓ What is the processor number used on the web servers? Answer guidance: Include any special characters/punctuation. (Example: The processor number for Intel Core i7-8650U is i7-8650U.)
 
 Again had to check if there's any sourcetype that points to hardware-related logs
 ```
@@ -133,7 +133,7 @@ index=botsv3 sourcetype=hardware
 ```
 🟢 **Answer**: E5-2676
 
-## ❓TASK❓ Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.
+## ❓TASK #5❓ Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.
 
 Did a quick search trying to find the account belonging to our guy "Bud", most probably "bstoll" or "btun"
 ```
@@ -221,7 +221,7 @@ That's the event we are looking for, we need its EventID
 
 🟢 **Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
-## ❓TASK❓ What is the name of the S3 bucket that was made publicly accessible?
+## ❓TASK #6❓ What is the name of the S3 bucket that was made publicly accessible?
 
 Using the last query
 ```
@@ -241,7 +241,7 @@ There we can identify the bucket name.
 
 🟢 **Answer**: frothlywebcode
 
-## ❓TASK❓ What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
+## ❓TASK #7❓ What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
 
 I can't see an event in CloudTrial that could be related to file uploads and listing by the events in the frothlywebcode bucket also does not gives any clues
 ```
@@ -296,7 +296,7 @@ index=botsv3 sourcetype=aws:s3:accesslogs frothlywebcode "*.txt"
 
 🟢 **Answer**: OPEN_BUCKET_PLEASE_FIX.txt
 
-## ❓TASK❓ What is the size (in megabytes) of the .tar.gz file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Round to two decimal places without the unit of measure. Use 1024 for the byte conversion. Use a period (not a comma) as the radix character. 
+## ❓TASK #8❓ What is the size (in megabytes) of the .tar.gz file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Round to two decimal places without the unit of measure. Use 1024 for the byte conversion. Use a period (not a comma) as the radix character. 
 
 In a similar way as the previous task, we could identify the .tar.gz file using:
 ```
@@ -343,7 +343,7 @@ So if the potential object size in bytes could be: 3076532 then:
 ```
 🟢 **Answer**: 2.93
 
-## ❓TASK❓ A Frothly endpoint exhibits signs of coin mining activity. What is the name of the first process to reach 100 percent CPU processor utilization time from this activity on this endpoint? Answer guidance: Include any special characters/punctuation.
+## ❓TASK #9❓ A Frothly endpoint exhibits signs of coin mining activity. What is the name of the first process to reach 100 percent CPU processor utilization time from this activity on this endpoint? Answer guidance: Include any special characters/punctuation.
 
 Seems that the "cpu" sourcetype could help here
 ```
@@ -377,7 +377,7 @@ I found the process!
 
 🟢 **Answer**: chrome#5
 
-## ❓TASK❓ When a Frothly web server EC2 instance is launched via auto scaling, it performs automated configuration tasks after the instance starts. How many packages and dependent packages are installed by the cloud initialization script? Answer guidance: Provide the number of installed packages then number of dependent packages, comma separated without spaces.
+## ❓TASK #10❓ When a Frothly web server EC2 instance is launched via auto scaling, it performs automated configuration tasks after the instance starts. How many packages and dependent packages are installed by the cloud initialization script? Answer guidance: Provide the number of installed packages then number of dependent packages, comma separated without spaces.
 
 I found some sourcetypes that could be related: "cloud-init" or ”cloud-init-output” or "package"
 ```
@@ -428,3 +428,72 @@ Total download size: 18 M
 Installed size: 55 M
 ```
 🟢 **Answer**: 7,13
+
+## ❓TASK #11❓ What is the short hostname of the only Frothly endpoint to actually mine Monero cryptocurrency? (Example: ahamilton instead of ahamilton.mycompany.com)
+
+This was fast, the token that monero uses in their Blockchain is XMR so a quick search for it gave only one result and the host was identified:
+```
+index=botsv3 xmr
+```
+🟢 **Answer**: BSTOLL-L
+
+## ❓TASK #12❓ How many cryptocurrency mining destinations are visited by Frothly endpoints?
+
+The most related sourcetype I found is "stream:dns" so I'll go for it using also some relevant keywords
+```
+index=botsv3 sourcetype=stream:dns (*crypto* OR *token* OR *coin* OR *blockchain* OR *xmr* OR *monero*)
+```
+I found that the address (cryptocurrency mining destination) was being stored in the field "query" so:
+```
+index=botsv3 sourcetype=stream:dns (*crypto* OR *token* OR *coin* OR *blockchain* OR *xmr* OR *monero*) 
+| stats count by query
+```
+This resulted in:
+```
+coinhive.com
+token.rubiconproject.com
+ws001.coinhive.com
+ws005.coinhive.com
+ws011.coinhive.com
+ws014.coinhive.com
+ws019.coinhive.com
+```
+7 was not accepted as an answer. Discarted "token.rubiconproject.com" and tried with 6, answere accepted.
+🟢 **Answer**: 6
+
+## ❓TASK #13❓ Using Splunk's event order functions, what is the first seen signature ID of the coin miner threat according to Frothly's Symantec Endpoint Protection (SEP) data?
+
+There are multiple source types to check: symantec:ep:agent:file, symantec:ep:agt_system:file, symantec:ep:behavior:file, symantec:ep:packet:file, symantec:ep:risk:file, symantec:ep:scm_system:file, symantec:ep:security:file, symantec:ep:traffic:file
+
+Tried to identify the source types where there are fields with the string "signature" in a name field.
+```
+index=botsv3 sourcetype=symantec:ep:agent:file | fieldsummary | search field=*signature*
+0 results
+index=botsv3 sourcetype=symantec:ep:agt_system:file | fieldsummary | search field=*signature*
+0 results
+index=botsv3 sourcetype=symantec:ep:behavior:file | fieldsummary | search field=*signature*
+1 field (signature)
+index=botsv3 sourcetype=symantec:ep:packet:file | fieldsummary | search field=*signature*
+0 results
+index=botsv3 sourcetype=symantec:ep:risk:file | fieldsummary | search field=*signature*
+2 results (signature, SEP_risk_signature)
+index=botsv3 sourcetype=symantec:ep:scm_system:file | fieldsummary | search field=*signature*
+1 field (signature)
+index=botsv3 sourcetype=symantec:ep:security:file | fieldsummary | search field=*signature*
+5 fields (signature, signature_id, CIDS_Signature_SubID, CIDS_Signature_String, CIDS_Signature_ID)
+index=botsv3 sourcetype=symantec:ep:traffic:file | fieldsummary | search field=*signature*
+0 results
+```
+Only one source type has the "Signature ID" field that I need for the answer: symantec:ep:security:file
+
+Trying to find how many different signature_id existed:
+```
+index=botsv3 sourcetype=symantec:ep:security:file 
+|  stats count by signature_id
+```
+Only 2 (30356 and 30358), the oldest one is 30358 as per:
+```
+index=botsv3 sourcetype=symantec:ep:security:file (signature_id=30356 OR signature_id=30358)
+|  reverse
+```
+`| reverse` - This is a command that changes the order of the events returned. By default, Splunk returns events in reverse chronological order (i.e., the most recent events first). The `reverse` command will flip this order, so the oldest events are shown first.
