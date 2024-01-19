@@ -190,7 +190,8 @@ That's the event we are looking for, we need its EventID
 
 🟢 **Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
-## ❓TASK❓ What is the name of the S3 bucket that was made publicly accessible?
+## ❓TASK❓ 
+What is the name of the S3 bucket that was made publicly accessible?
 
 Using the last query
 ```
@@ -210,7 +211,8 @@ There we can identify the bucket name.
 
 🟢 **Answer**: frothlywebcode
 
-## ❓TASK❓ What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
+## ❓TASK❓ 
+What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
 
 Using the last query
 ```
