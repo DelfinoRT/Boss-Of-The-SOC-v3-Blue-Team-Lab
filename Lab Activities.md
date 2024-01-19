@@ -17,7 +17,7 @@ index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 <details>
   <summary>List of all the fields in CloudTrial</summary>
   | First Header  | Second Header |
-| ------------- | ------------- |
+| --- | --- |
 | AssumeRole  | AuthorizeSecurityGroupIngress  |
 | ConsoleLogin  | CreateAccessKey  |
 
