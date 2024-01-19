@@ -523,6 +523,7 @@ According to https://docs.splunk.com/Documentation/SplunkCloud/9.1.2308/Data/Mon
 index=botsv3 sourcetype=winhostmon
 ```
 ~130k events as a result 
+
 Found an eventtype that could be related "hostmon_os" so:
 ```
 index=botsv3 sourcetype=winhostmon eventtype=hostmon_os
