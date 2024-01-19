@@ -15,121 +15,38 @@ The next step for me was to find out what exact data is stored in CludTrial:
 index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 ```
 
-| First Header  | Second Header | Second Header |
-| --- | --- | --- |
-| AssumeRole  | AuthorizeSecurityGroupIngress  | CreateAccessKey  |
-| ConsoleLogin  | CreateAccessKey  | CreateAccessKey  |
+| AssumeRole  | AuthorizeSecurityGroupIngress | CreateAccessKey | ConsoleLogin  |
+| --- | --- | --- | --- |
+| CreateDefaultVpc  | CreateLogStream  | CreateTags  | CreateUser  |
+| ConsoleLogin  | CreateAccessKey  | CreateAccessKey  | CreateAccessKey  |
+| Decrypt  | DeleteAccessKey  | DeleteAlarms  | DeregisterTargets  |
+| DescribeAccountAttributes  | DescribeAddresses  | DescribeAlarms  | DescribeAutoScalingGroups  |
+| DescribeAvailabilityZones  | DescribeClusterParameterGroups  | DescribeClusterSecurityGroups  | DescribeClusterSnapshots  |
+| DescribeClusterSubnetGroups  | DescribeClusters  | DescribeConfigRuleEvaluationStatus  | DescribeConfigRules  |
+| DescribeDBInstances  | DescribeDBSecurityGroups  | DescribeDBSnapshotAttributes  | DescribeDBSnapshots  |
+| DescribeDBSubnetGroups  | DescribeEventSubscriptions  | DescribeHosts  | DescribeIdFormat  |
+| DescribeImages  | DescribeInstanceAttribute  | DescribeInstanceCreditSpecifications  | DescribeInstanceStatus  |
+| DescribeInstances  | DescribeKeyPairs  | DescribeLaunchConfigurations  | DescribeLaunchTemplateVersions  |
+| DescribeLaunchTemplates  | DescribeLifecycleHooks  | DescribeListeners  | DescribeLoadBalancerAttributes  |
+| DescribeLoadBalancers  | DescribeNetworkAcls  | DescribeNetworkInterfaces  | DescribePlacementGroups  |
+| DescribePolicies  | DescribeReservedInstances  | DescribeRouteTables  | DescribeScalingActivities  |
+| DescribeSecurityGroups  | DescribeSnapshots  | DescribeStaleSecurityGroups  | DescribeSubnets  |
+| DescribeTags  | DescribeTargetGroupAttributes  | DescribeTargetGroups  | DescribeTargetHealth  |
+| DescribeTrails  | DescribeVolumeStatus  | DescribeVolumes  | DescribeVolumesModifications  |
+| DescribeVpcs  | GetAccountPasswordPolicy  | GetAccountSummary  | GetBucketAcl  |
+| GetBucketCors  | GetBucketEncryption  | GetBucketLifecycle  | GetBucketLocation  |
+| GetBucketLogging  | GetBucketNotification  | GetBucketPolicy  | GetBucketReplication  |
+| GetBucketRequestPayment  | GetBucketTagging  | GetBucketVersioning  | GetBucketWebsite  |
+| GetCallerIdentity  | GetComplianceDetailsByConfigRule  | GetComplianceSummaryByConfigRule  | GetConsoleOutput  |
+| GetConsoleScreenshot  | GetSessionToken  | GetUser  | ListAccessKeys  |
+| ListAccountAliases  | ListAssessmentRuns  | ListAttachedUserPolicies  | ListBuckets  |
+| ListCertificates  | ListDistributions  | ListFindings  | ListFunctions20150331  |
+| ListGroups  | ListInstanceProfiles  | ListSSHPublicKeys  | ListServiceSpecificCredentials  |
+| ListTagsForResource  | ListUsers  | PutBucketAcl  | PutEvaluations  |
+| PutMetricAlarm  | PutScalingPolicy  | RegisterTargets  | RevokeSecurityGroupIngress  |
+| RunInstances  | StartAssessmentRun  | TerminateInstances  | UpdateAccessKey  |
+| UpdateSecurityGroupRuleDescriptionsIngress  | -  | -  | -  |
 
-CreateDefaultVpc
-CreateLogStream
-CreateTags
-CreateUser
-Decrypt
-DeleteAccessKey
-DeleteAlarms
-DeregisterTargets
-DescribeAccountAttributes
-DescribeAddresses
-DescribeAlarms
-DescribeAutoScalingGroups
-DescribeAvailabilityZones
-DescribeClusterParameterGroups
-DescribeClusterSecurityGroups
-DescribeClusterSnapshots
-DescribeClusterSubnetGroups
-DescribeClusters
-DescribeConfigRuleEvaluationStatus
-DescribeConfigRules
-DescribeDBInstances
-DescribeDBSecurityGroups
-DescribeDBSnapshotAttributes
-DescribeDBSnapshots
-DescribeDBSubnetGroups
-DescribeEventSubscriptions
-DescribeHosts
-DescribeIdFormat
-DescribeImages
-DescribeInstanceAttribute
-DescribeInstanceCreditSpecifications
-DescribeInstanceStatus
-DescribeInstances
-DescribeKeyPairs
-DescribeLaunchConfigurations
-DescribeLaunchTemplateVersions
-DescribeLaunchTemplates
-DescribeLifecycleHooks
-DescribeListeners
-DescribeLoadBalancerAttributes
-DescribeLoadBalancers
-DescribeNetworkAcls
-DescribeNetworkInterfaces
-DescribePlacementGroups
-DescribePolicies
-DescribeReservedInstances
-DescribeRouteTables
-DescribeScalingActivities
-DescribeSecurityGroups
-DescribeSnapshots
-DescribeStaleSecurityGroups
-DescribeSubnets
-DescribeTags
-DescribeTargetGroupAttributes
-DescribeTargetGroups
-DescribeTargetHealth
-DescribeTrails
-DescribeVolumeStatus
-DescribeVolumes
-DescribeVolumesModifications
-DescribeVpcs
-GetAccountPasswordPolicy
-GetAccountSummary
-GetBucketAcl
-GetBucketCors
-GetBucketEncryption
-GetBucketLifecycle
-GetBucketLocation
-GetBucketLogging
-GetBucketNotification
-GetBucketPolicy
-GetBucketReplication
-GetBucketRequestPayment
-GetBucketTagging
-GetBucketVersioning
-GetBucketWebsite
-GetCallerIdentity
-GetComplianceDetailsByConfigRule
-GetComplianceSummaryByConfigRule
-GetConsoleOutput
-GetConsoleScreenshot
-GetSessionToken
-GetUser
-ListAccessKeys
-ListAccountAliases
-ListAssessmentRuns
-ListAttachedUserPolicies
-ListBuckets
-ListCertificates
-ListDistributions
-ListFindings
-ListFunctions20150331
-ListGroups
-ListInstanceProfiles
-ListSSHPublicKeys
-ListServiceSpecificCredentials
-ListTagsForResource
-ListUsers
-PutBucketAcl
-PutEvaluations
-PutMetricAlarm
-PutScalingPolicy
-RegisterTargets
-RevokeSecurityGroupIngress
-RunInstances
-StartAssessmentRun
-TerminateInstances
-UpdateAccessKey
-UpdateSecurityGroupRuleDescriptionsIngress
-</details>
 Found "userIdentity.userName" which is the most aligned to what I was looking for to answer the question.
 Finally enumerated the available user names:
 ```
