@@ -491,7 +491,7 @@ Trying to find how many different signature_id existed:
 index=botsv3 sourcetype=symantec:ep:security:file 
 |  stats count by signature_id
 ```
-Only 2 (30356 and 30358), the oldest one logged is 30358 as per:
+Only 2 (30356 and 30358), the oldest log belongs to 30358 as per:
 ```
 index=botsv3 sourcetype=symantec:ep:security:file (signature_id=30356 OR signature_id=30358)
 |  reverse
