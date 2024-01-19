@@ -90,7 +90,7 @@ index=botsv3 sourcetype=aws:cloudtrail
 ```
 🟢 **Answer**: userIdentity.sessionContext.mfaAuthenticated
 
-❓TASK❓ **What is the processor number used on the web servers? Answer guidance: Include any special characters/punctuation. (Example: The processor number for Intel Core i7-8650U is i7-8650U.)**  
+## ❓TASK❓ **What is the processor number used on the web servers? Answer guidance: Include any special characters/punctuation. (Example: The processor number for Intel Core i7-8650U is i7-8650U.)**  
 
 Again had to check if there's any sourcetype that points to hardware-related logs
 ```
@@ -102,7 +102,7 @@ index=botsv3 sourcetype=hardware
 ```
 🟢 **Answer**: E5-2676
 
-❓TASK❓ **Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.**  
+## ❓TASK❓ **Bud accidentally makes an S3 bucket publicly accessible. What is the event ID of the API call that enabled public access? Answer guidance: Include any special characters/punctuation.**  
 
 Did a quick search trying to find the account belonging to our guy "Bud", most probably "bstoll" or "btun"
 ```
@@ -190,7 +190,7 @@ That's the event we are looking for, we need its EventID
 
 🟢 **Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
-❓TASK❓ **What is the name of the S3 bucket that was made publicly accessible?**  
+## ❓TASK❓ What is the name of the S3 bucket that was made publicly accessible?
 
 Using the last query
 ```
@@ -209,3 +209,11 @@ We need to expand the 'requestParameters' object to see this:
 There we can identify the bucket name.
 
 🟢 **Answer**: frothlywebcode
+
+## ❓TASK❓ What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)  
+
+Using the last query
+```
+index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
+```
+We need to expand the 'requestParameters' object to see this:
