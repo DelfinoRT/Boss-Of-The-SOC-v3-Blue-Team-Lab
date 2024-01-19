@@ -515,3 +515,24 @@ index=botsv3 sourcetype=symantec:ep:security:file signature_id=30358 action=bloc
 All of the resulting events show the same host name "BTUN-L"
 
 🟢 **Answer**: BTUN-L
+
+## ❓TASK #16❓ What is the FQDN of the endpoint that is running a different Windows operating system edition than the others?
+
+According to https://docs.splunk.com/Documentation/SplunkCloud/9.1.2308/Data/MonitorWindowshostinformation, we can find information about the operating system in the source type: winhostmon
+```
+index=botsv3 sourcetype=winhostmon
+```
+~130k events as a result 
+Found an eventtype that could be related "hostmon_os" so:
+```
+index=botsv3 sourcetype=winhostmon eventtype=hostmon_os
+```
+Got only 204 events this time and they present the endpoint name in the "host" field and its operating system in the "OS" field
+```
+index=botsv3 sourcetype=winhostmon eventtype=hostmon_os 
+| stats count by OS, host
+```
+The endpoint that's using a different OS than the rest is "BSTOLL-L"
+We've seen the full usernames in the format "username: bstoll@froth.ly" so I'm assuming that the host's FQDN would use the same domain data
+
+🟢 **Answer**: BSTOLL-L.froth.ly
