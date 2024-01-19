@@ -371,8 +371,8 @@ index=botsv3 sourcetype=PerfmonMk:Process
 | table host, instance, process_cpu_used_percent, process_id, process_name, source
 ```
 I found the process!
-| host | process_cpu_used_percent | process_id | process_name | source |
-| --- | --- | --- | --- | --- |
-| BSTOLL-L | 100 | 8000| chrome#5 | PerfmonMk:Process|
+| host | process_cpu_used_percent | process_id | process_name |
+| --- | --- | --- | --- |
+| BSTOLL-L | 100 | 8000| chrome#5 |
 
 🟢 **Answer**: chrome#5
