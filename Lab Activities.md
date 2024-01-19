@@ -376,3 +376,41 @@ I found the process!
 | BSTOLL-L | 100 | 8000| chrome#5 |
 
 🟢 **Answer**: chrome#5
+
+## ❓TASK❓ When a Frothly web server EC2 instance is launched via auto scaling, it performs automated configuration tasks after the instance starts. How many packages and dependent packages are installed by the cloud initialization script? Answer guidance: Provide the number of installed packages then number of dependent packages, comma separated without spaces.
+
+I found some related sourcetypes that could be related: "cloud-init" or ”cloud-init-output” or "package"
+This thread (https://serverfault.com/questions/228481/where-is-log-output-from-cloud-init-stored) points to "cloud-init"
+```
+index=botsv3 sourcetype=cloud-init
+```
+1,344 events but don't seem to provide details on installed packages
+```
+index=botsv3 sourcetype=cloud-init-output
+```
+23 events and each logs has a bunch more details
+```
+index=botsv3 sourcetype=package
+```
+8,720 events and don't seem to be related to EC2 initialization so I'll stick back with "cloud-init-output"
+```
+index=botsv3 sourcetype=cloud-init-output
+```
+"index=botsv3 sourcetype=cloud-init-output autoscale" and "index=botsv3 sourcetype=cloud-init-output autoscaling" proved to not be helpful at all
+
+I see from here https://docs.aws.amazon.com/linux/al2023/ug/managing-repos-os-updates.html and here https://aws.amazon.com/blogs/mt/software-deployment-to-amazon-workspaces-using-aws-systems-manager/ that the output will show a "Transaction summary" with the packages installed after it runs, so:
+```
+index=botsv3 sourcetype=cloud-init-output "Transaction summary"
+```
+This brings 6 events and in 2 of them I found:
+```
+8/20/18
+2:25:21.000 PM	
+Cloud-init v. 0.7.6 running 'modules:final' at Thu, 26 Jul 2018 01:37:21 +0000. Up 11.07 seconds.
+... 132 lines omitted ...
+ php-xml            x86_64 5.3.29-1.8.amzn1           amzn-main           234 k
+Transaction Summary
+================================================================================
+Install  7 Packages (+13 Dependent packages)
+```
+🟢 **Answer**: 7,13
