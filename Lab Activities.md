@@ -14,6 +14,10 @@ The next step for me was to find out what exact data is stored in CludTrial:
 ```
 index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 ```
+| First Header  | Second Header | Second Header |
+| --- | --- | --- |
+| AssumeRole  | AuthorizeSecurityGroupIngress  | CreateAccessKey  |
+| ConsoleLogin  | CreateAccessKey  | CreateAccessKey  |
 <details>
   <summary>List of all the fields in CloudTrial</summary>
   | First Header  | Second Header | Second Header |
