@@ -296,4 +296,50 @@ index=botsv3 sourcetype=aws:s3:accesslogs frothlywebcode "*.txt"
 
 🟢 **Answer**: OPEN_BUCKET_PLEASE_FIX.txt
 
+## ❓TASK❓ What is the size (in megabytes) of the .tar.gz file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Round to two decimal places without the unit of measure. Use 1024 for the byte conversion. Use a period (not a comma) as the radix character. 
 
+In a similar way as the previous task, we could identify the .tar.gz file using:
+```
+index=botsv3 sourcetype=aws:s3:accesslogs frothlywebcode "*.tar.gz"
+```
+I got multiple logs for multiple type of calls:
+- REST.GET.OBJECT
+- REST.HEAD.OBJECT
+- REST.PUT.OBJECT
+- REST.GET.BUCKETVERSIONS
+- REST.GET.ACL
+- REST.GET.BUCKET
+  
+I filtered then using just the REST.PUT.OBJECT call
+```
+index=botsv3 sourcetype=aws:s3:accesslogs frothlywebcode REST.PUT.OBJECT "*.tar.gz"
+```
+This time I got only 3 logs but I can't specifically identify the file size. Used AI to help me analyze the log
+```
+help me analyze this log file:
+help me analyze this log:
+4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:04:17 +0000] 35.182.246.222 - 372244DB57196FB9 REST.PUT.OBJECT frothly_html_memcached.tar.gz "PUT /frothly_html_memcached.tar.gz HTTP/1.1" 200 - - 3076532 981 49 "-" "Boto3/1.7.61 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12" -
+```
+AI response:
+```
+This log appears to be from AWS (Amazon Web Services), specifically from the S3 service, which is used for object storage. Here's the breakdown:
+
+- `4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d` - This is possibly a SHA-256 hash, which could be used to uniquely identify the log entry.
+- `frothlywebcode` - This could be the bucket name on S3.
+- `[20/Aug/2018:13:04:17 +0000]` - The timestamp of when the action occurred.
+- `35.182.246.222` - The IP address of the client that made the request. 
+- `372244DB57196FB9` - This could be the request ID, which is unique for every request.
+- `REST.PUT.OBJECT` - The operation that was performed. In this case, a `PUT` request was made, indicating that a file was uploaded.
+- `frothly_html_memcached.tar.gz` - The object that was put onto the S3 bucket. It's a .tar.gz file, which is a Gzip compressed tar Archive file.
+- `"PUT /frothly_html_memcached.tar.gz HTTP/1.1" 200` - This further confirms the `PUT` operation, the file involved, and the HTTP version used. The `200` is the HTTP status code for 'OK', indicating that the operation was successful.
+- `3076532` - This is likely the size of the object in bytes.
+- `981` - This could be the time taken to serve the request, in milliseconds.
+- `49` - This could be the time taken to establish a connection, in milliseconds.
+- `"Boto3/1.7.61 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12"` - This is the user agent string, which tells us that the client used the Boto3 library (version 1.7.61), Python version 2.7.14, and a Linux OS to make the request. Botocore is a low-level, core functionality library for AWS services and Boto3 depends on it.
+```
+So if the potential object size in bytes could be: 3076532 then:
+```
+3076532 bytes / 1024 = 3002.77 kilobytes
+3002.77 kilobytes / 1024 = 2.93 megabytes
+```
+🟢 **Answer**: 2.93
