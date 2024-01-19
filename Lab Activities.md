@@ -260,7 +260,7 @@ Build a query to find all TXT-related events on the 'aws:s3:accesslogs' sourcety
 index=botsv3 sourcetype=aws:s3:accesslogs "*.txt"
 ```
 Found 3 logs. Now I need to crosscheck the time when the bucket was publicly accessible (8/20/18 1:01:46.000 PM) to one of the listed events.
-The 3 listed events match the time nefore the ACL was changed to remove public access.
+The 3 listed events match the time before the ACL was changed to remove public access.
 ```
 8/20/18
 1:03:46.000 PM	
