@@ -250,6 +250,44 @@ index=botsv3 sourcetype=aws:cloudtrail  requestParameters.bucketName=frothlywebc
 ```
 I found (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events) that potentially data uploads to the bucket could be logged by 'AWS::S3' as per the service description:
 > Amazon S3 object-level API activity (for example, GetObject, DeleteObject, and PutObject API operations) on buckets and objects in buckets.
+
+Seems that the sourcetype could potentially be
 ```
-index=botsv3 sourcetype=aws:cloudtrail bstoll eventName=PutBucketAcl
+aws:s3:accesslogs
 ```
+Build a query to find all TXT-related events on the 'aws:s3:accesslogs' sourcetype:
+```
+index=botsv3 sourcetype=aws:s3:accesslogs "*.txt"
+```
+Found 3 logs. Now I need to crosscheck the time when the bucket was publicly accessible (8/20/18 1:01:46.000 PM) to one of the listed events.
+The 3 listed events match the time nefore the ACL was changed to remove public access.
+```
+8/20/18
+1:03:46.000 PM	
+4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:03:46 +0000] 35.182.246.222 - 6CF2A6F4DE3DC1E8 REST.GET.OBJECT OPEN_BUCKET_PLEASE_FIX.txt "GET /OPEN_BUCKET_PLEASE_FIX.txt HTTP/1.1" 200 - 377 377 14 13 "-" "aws-cli/1.14.8 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 botocore/1.8.12" -
+
+    host = splunk.froth.ly
+    source = s3://frothlyweblogs/s32018-07-26-01-25-30-F2258C3FF62970B6
+    sourcetype = aws:s3:accesslogs
+
+	8/20/18
+1:02:45.000 PM	
+4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:02:45 +0000] 52.66.146.128 - A01BFC3123EC114C REST.GET.BUCKET - "GET /?prefix=OPEN_BUCKET_PLEASE_FIX.txt&encoding-type=url HTTP/1.1" 200 - 575 - 11 10 "-" "Boto3/1.7.62 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12" -
+
+    host = splunk.froth.ly
+    source = s3://frothlyweblogs/s32018-07-26-01-20-56-19D73C05AA29AED8
+    sourcetype = aws:s3:accesslogs
+
+	8/20/18
+1:02:44.000 PM	
+4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:02:44 +0000] 52.66.146.128 - DF1BA98D9E2369B4 REST.PUT.OBJECT OPEN_BUCKET_PLEASE_FIX.txt "PUT /OPEN_BUCKET_PLEASE_FIX.txt HTTP/1.1" 200 - - 377 268 9 "-" "Boto3/1.7.62 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12" -
+
+    host = splunk.froth.ly
+    source = s3://frothlyweblogs/s32018-07-26-01-20-56-19D73C05AA29AED8
+    sourcetype = aws:s3:accesslogs
+```
+The 3 events reference the same TXT file
+
+🟢 **Answer**: OPEN_BUCKET_PLEASE_FIX.txt
+
+
