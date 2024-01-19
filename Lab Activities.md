@@ -287,7 +287,12 @@ The 3 listed events match the time before the ACL was changed to remove public a
     source = s3://frothlyweblogs/s32018-07-26-01-20-56-19D73C05AA29AED8
     sourcetype = aws:s3:accesslogs
 ```
-The 3 events reference the same TXT file
+The 3 events reference the same TXT file and the SR bucket (frothlywebcode).
+
+Probably I could have refined the search by using the bucket name as filter:
+```
+index=botsv3 sourcetype=aws:s3:accesslogs frothlywebcode "*.txt"
+```
 
 🟢 **Answer**: OPEN_BUCKET_PLEASE_FIX.txt
 
