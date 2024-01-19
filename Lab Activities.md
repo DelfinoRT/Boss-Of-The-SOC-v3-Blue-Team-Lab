@@ -15,8 +15,9 @@ The next step for me was to find out what exact data is stored in CludTrial:
 index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 ```
 
-| AssumeRole  | AuthorizeSecurityGroupIngress | CreateAccessKey | ConsoleLogin  |
+| 1  | 2 | 3 | 4  |
 | --- | --- | --- | --- |
+| AssumeRole | AuthorizeSecurityGroupIngress | CreateAccessKey | ConsoleLogin |
 | CreateDefaultVpc  | CreateLogStream  | CreateTags  | CreateUser  |
 | ConsoleLogin  | CreateAccessKey  | CreateAccessKey  | CreateAccessKey  |
 | Decrypt  | DeleteAccessKey  | DeleteAlarms  | DeregisterTargets  |
