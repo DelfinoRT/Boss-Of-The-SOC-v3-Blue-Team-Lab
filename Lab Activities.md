@@ -9,6 +9,35 @@ Then I went to investigate where AWS stores logs for user access and got to: htt
 index=botsv3 | stats count by sourcetype
 ```
 Sourcetype "aws:cloudtrail" identified
+All Source Types:
+| 1  | 2 | 3 | 4  |
+| --- | --- | --- | --- |
+| PerfmonMk:Process | Script:GetEndpointInfo | Script:InstalledApps | Script:ListeningPorts |
+| Unix:ListeningPorts | Unix:ListeningPorts | Unix:SSHDConfig | Unix:Service |
+| Unix:Update | Unix:Uptime | Unix:UserAccounts | Unix:Version |
+| WinHostMon | access_combined | alternatives | amazon-ssm-agent |
+| amazon-ssm-agent-too_small | apache_error | aws:cloudtrail | aws:cloudwatch |
+| aws:cloudwatch:guardduty | aws:cloudwatchlogs | aws:cloudwatchlogs:vpcflow | aws:config:rule |
+| aws:description | aws:elb:accesslogs | aws:rds:audit | aws:rds:error |
+| aws:s3:accesslogs | bandwidth | bash_history | bootstrap |
+| cisco:asa | cloud-init | cloud-init-output | code42:api |
+| code42:computer | code42:org | code42:security | code42:user |
+| config_file | cpu | cron-too_small | dmesg |
+| dpkg | error-too_small | errors | errors-too_small |
+| ess_content_importer | hardware | history-2 | interfaces |
+| iostat | lastlog | linux_audit | linux_secure |
+| localhost-5 | lsof | maillog-too_small | ms:aad:audit |
+| ms:aad:signin | ms:o365:management | ms:o365:reporting:messagetrace | o365:management:activity |
+| openPorts | osquery:info | osquery:results | osquery:warning |
+| out-3 | package | protocol | ps |
+| stream:arp | stream:dhcp | stream:dns | stream:http |
+| stream:icmp | stream:igmp | stream:ip | stream:mysql |
+| stream:smb | stream:smtp | stream:tcp | stream:udp |
+| symantec:ep:agent:file | symantec:ep:agt_system:file | symantec:ep:behavior:file | symantec:ep:packet:file |
+| symantec:ep:risk:file | symantec:ep:scm_system:file | symantec:ep:security:file | symantec:ep:traffic:file |
+| syslog | time | top | usersWithLoginPrivs |
+| vmstat | who | wineventlog | xmlwineventlog |
+| yum-too_small | - | - | - |
 
 All CloudTrial events:
 | 1  | 2 | 3 | 4  |
@@ -43,6 +72,7 @@ All CloudTrial events:
 | PutMetricAlarm  | PutScalingPolicy  | RegisterTargets  | RevokeSecurityGroupIngress  |
 | RunInstances  | StartAssessmentRun  | TerminateInstances  | UpdateAccessKey  |
 | UpdateSecurityGroupRuleDescriptionsIngress  | -  | -  | -  |
+
 
 The next step for me was to find out what exact data is stored in CludTrial:
 ```
