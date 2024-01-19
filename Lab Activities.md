@@ -205,4 +205,6 @@ We need to expand the 'requestParameters' object to see this:
      bucketName: frothlywebcode
    }
 ```
-There we can identify the bucket name.**Answer**: frothlywebcode
+There we can identify the bucket name.
+
+**Answer**: frothlywebcode
