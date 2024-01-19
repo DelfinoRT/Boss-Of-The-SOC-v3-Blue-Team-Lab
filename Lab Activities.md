@@ -1,4 +1,4 @@
-❓TASK❓ **List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller)**  
+## ❓TASK❓ **List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller)**  
 
 First I did a quick search and found out that the only index available was "botsv3"
 ```
@@ -56,7 +56,7 @@ index=botsv3 sourcetype=aws:cloudtrail | stats count by userIdentity.userName
 ```
 🟢 **Answer**: bstoll,btun,splunk_access,web_admin
 
-❓TASK❓ **What field would you use to alert that AWS API activity have occurred without MFA (multi-factor authentication)? Answer guidance: Provide the full JSON path. (Example: iceCream.flavors.traditional)**  
+## ❓TASK❓ **What field would you use to alert that AWS API activity have occurred without MFA (multi-factor authentication)? Answer guidance: Provide the full JSON path. (Example: iceCream.flavors.traditional)**  
 
 Online search took me to https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html where I found:
 ```
