@@ -9,6 +9,7 @@ Then I went to investigate where AWS stores logs for user access and got to: htt
 index=botsv3 | stats count by sourcetype
 ```
 Sourcetype "aws:cloudtrail" identified
+
 All CloudTrial events:
 | 1  | 2 | 3 | 4  |
 | --- | --- | --- | --- |
