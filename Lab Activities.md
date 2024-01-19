@@ -414,4 +414,17 @@ Transaction Summary
 ================================================================================
 Install  7 Packages (+13 Dependent packages)
 ```
+I realized that I could have resolved this way earlier by using "dependent" in the search query:
+```
+index=botsv3 sourcetype=cloud-init-output dependent
+```
+This brings 3 logs with the information I was looking for:
+```
+Cloud-init v. 0.7.6 running 'modules:final' at Thu, 26 Jul 2018 01:37:21 +0000. Up 11.07 seconds.
+... 134 lines omitted ...
+================================================================================
+Install  7 Packages (+13 Dependent packages)
+Total download size: 18 M
+Installed size: 55 M
+```
 🟢 **Answer**: 7,13
