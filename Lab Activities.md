@@ -187,6 +187,7 @@ One of these events is granting WRITE and READ permissions to "global/All users"
            }
 ```
 That's the event we are looking for, we need its EventID
+
 **Answer**: ab45689d-69cd-41e7-8705-5350402cf7ac
 
 🟢TASK🟢 **What is the name of the S3 bucket that was made publicly accessible?**  
