@@ -380,7 +380,6 @@ I found the process!
 ## ❓TASK❓ When a Frothly web server EC2 instance is launched via auto scaling, it performs automated configuration tasks after the instance starts. How many packages and dependent packages are installed by the cloud initialization script? Answer guidance: Provide the number of installed packages then number of dependent packages, comma separated without spaces.
 
 I found some sourcetypes that could be related: "cloud-init" or ”cloud-init-output” or "package"
-This thread (https://serverfault.com/questions/228481/where-is-log-output-from-cloud-init-stored) points to "cloud-init"
 ```
 index=botsv3 sourcetype=cloud-init
 ```
@@ -392,7 +391,9 @@ index=botsv3 sourcetype=cloud-init-output
 ```
 index=botsv3 sourcetype=package
 ```
-8,720 events and don't seem to be related to EC2 initialization so I'll stick back with "cloud-init-output"
+8,720 events and don't seem to be related to EC2 initialization
+
+This thread (https://serverfault.com/questions/228481/where-is-log-output-from-cloud-init-stored) points to "cloud-init-output", so I'll stick back with "cloud-init-output"
 ```
 index=botsv3 sourcetype=cloud-init-output
 ```
