@@ -271,7 +271,7 @@ The 3 listed events match the time before the ACL was changed to remove public a
     source = s3://frothlyweblogs/s32018-07-26-01-25-30-F2258C3FF62970B6
     sourcetype = aws:s3:accesslogs
 
-	8/20/18
+8/20/18
 1:02:45.000 PM	
 4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:02:45 +0000] 52.66.146.128 - A01BFC3123EC114C REST.GET.BUCKET - "GET /?prefix=OPEN_BUCKET_PLEASE_FIX.txt&encoding-type=url HTTP/1.1" 200 - 575 - 11 10 "-" "Boto3/1.7.62 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12" -
 
@@ -279,7 +279,7 @@ The 3 listed events match the time before the ACL was changed to remove public a
     source = s3://frothlyweblogs/s32018-07-26-01-20-56-19D73C05AA29AED8
     sourcetype = aws:s3:accesslogs
 
-	8/20/18
+8/20/18
 1:02:44.000 PM	
 4c018053e740f45beb45f68c0f5eff6347745488ae540130432c9fc64fae310d frothlywebcode [20/Aug/2018:13:02:44 +0000] 52.66.146.128 - DF1BA98D9E2369B4 REST.PUT.OBJECT OPEN_BUCKET_PLEASE_FIX.txt "PUT /OPEN_BUCKET_PLEASE_FIX.txt HTTP/1.1" 200 - - 377 268 9 "-" "Boto3/1.7.62 Python/2.7.14 Linux/4.14.47-64.38.amzn2.x86_64 Botocore/1.8.12" -
 
