@@ -20,7 +20,7 @@ index=botsv3 sourcetype=aws:cloudtrail | fieldsummary
 | --- | --- | --- |
 | AssumeRole  | AuthorizeSecurityGroupIngress  | CreateAccessKey  |
 | ConsoleLogin  | CreateAccessKey  | CreateAccessKey  |
-
+| --- | --- | --- |
 
 
 
